@@ -1,0 +1,17 @@
+  <header>
+    <nav class="navbar navbar-dark justify-content-between" style="padding: 8px 16px;
+        background-color: #e95420;">
+      <a class="navbar-brand" href="/">
+      {{#if isAuthenticated}} {{user.name}}'s {{/if}}
+      Todo List
+      </a>
+      {{#if isAuthenticated}}
+      <span>
+      <a class="btn btn-outline-light" href="/todos/new">Create</a>
+      <a href="/users/logout" class="btn btn-secondary">logout</a>
+      </span>
+      {{else}}
+      <a href="/users/login" class="btn btn-outline-light">login</a>
+      {{/if}}
+    </nav>
+  </header>
