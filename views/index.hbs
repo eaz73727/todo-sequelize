@@ -12,7 +12,7 @@
       <div class="col-auto">
         <a class="btn btn-secondary" href="./{{this.id}}">detail</a>
         <a class="btn btn-success" href="./{{this.id}}/edit">edit</a>
-        <form action="./{{this.id}}?_method=DELETE" method="POST" style="display: inline;">
+        <form action="/todos/{{this.id}}?_method=DELETE" method="POST" style="display: inline;">
           <button class="btn btn-danger" type="submit">delete</button>
         </form>
       </div>

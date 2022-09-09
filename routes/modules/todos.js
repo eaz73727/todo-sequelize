@@ -13,6 +13,16 @@ router.post('/', (req, res) => {
     .then(() => res.redirect('/todos'))
 })
 
+router.delete('/:id', (req, res) => {
+  const UserId = req.user.id
+  const id = req.params.id
+  Todo.findOne({ where: { UserId, id } })
+    .then(todo => {
+      return todo.destroy()
+    })
+    .then(() => res.redirect('/todos'))
+})
+
 router.put('/:id', (req, res) => {
   const UserId = req.user.id
   const id = req.params.id
