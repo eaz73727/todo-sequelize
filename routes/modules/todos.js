@@ -13,14 +13,43 @@ router.post('/', (req, res) => {
     .then(() => res.redirect('/todos'))
 })
 
-router.get('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
+  const UserId = req.user.id
+  const id = req.params.id
+  const { name, isDone } = req.body
+  return Todo.findOne({ where: { id, UserId } })
+    .then(todo => {
+      todo.name = name
+      todo.isDone = isDone === 'on'
+      return todo.save()
+    })
+    .then(() => res.redirect(`/todos`))
+    .catch(err => console.log(err))
+})
+
+router.get('/:id/edit', (req, res) => {
   Todo.findOne({
+    raw: true,
+    nest: true,
     where: {
       UserId: req.user.id,
       id: req.params.id
-    },
+    }
+  })
+    .then(todo => {
+      console.log(todo)
+      res.render('edit', { todo })
+    })
+})
+
+router.get('/:id', (req, res) => {
+  Todo.findOne({
     raw: true,
-    nest: true
+    nest: true,
+    where: {
+      UserId: req.user.id,
+      id: req.params.id
+    }
   })
     .then(todo => res.render('detail', { todo }))
 })

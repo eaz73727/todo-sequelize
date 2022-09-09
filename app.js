@@ -23,6 +23,7 @@ app.use(session({
   saveUninitialized: false
 }))
 usePassport(app)
+app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use((req, res, next) => {
