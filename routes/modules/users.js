@@ -60,7 +60,7 @@ router.post('/register', (req, res) => {
 })
 
 router.get('/logout', (req, res, next) => {
-  res.logout(err => {
+  req.logout(err => {
     if (err) {
       return next(err)
     }
