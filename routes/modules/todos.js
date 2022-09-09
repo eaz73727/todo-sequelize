@@ -13,6 +13,18 @@ router.post('/', (req, res) => {
     .then(() => res.redirect('/todos'))
 })
 
+router.get('/:id', (req, res) => {
+  Todo.findOne({
+    where: {
+      UserId: req.user.id,
+      id: req.params.id
+    },
+    raw: true,
+    nest: true
+  })
+    .then(todo => res.render('detail', { todo }))
+})
+
 router.get('/new', (req, res) => {
   res.render('new')
 })
