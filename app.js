@@ -26,7 +26,7 @@ usePassport(app)
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use((req, res, next) => {
-  // res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
   res.locals.success_msg = req.flash('usccess_msg')
   res.locals.warning_msg = req.flash('warning_msg')

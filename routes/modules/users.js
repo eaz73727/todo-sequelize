@@ -53,7 +53,7 @@ router.post('/register', (req, res) => {
         })
         .then(() => {
           req.flash('success_msg', "註冊成功，登入以使用！")
-          res.redirect('/')
+          res.redirect('/users/login')
         })
     })
     .catch(err => console.log(err))
